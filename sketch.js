@@ -22,15 +22,16 @@ function setup() {
   player.debug = true
   player.setCollider("rectangle",0,0,400,500)
 
-
-  ground = createSprite((windowWidth*3)/2, windowHeight-60, windowWidth*3, 50)
-  ground.visible = false
+  ground = createSprite(windowWidth/2, 680, windowWidth*6, 100)
+  //ground.visible = false
 
   blocos = new Group()
 
   criarBlocos(335,513,30,30, "brown")
   criarBlocos(528,513,30,30, "brown")
-  //criarBlocos(528,513,162,30, "yellow")
+  criarBlocos(528,513,162,30, "yellow")
+
+  criarBlocos(735,570,60,15, 'blue')
 
 }
 
@@ -48,7 +49,7 @@ function draw() {
     image(fundo,i,0,1280,720)
   }
 
-  if(keyDown(RIGHT_ARROW) && player.position.x < 3840){
+  if(keyDown(RIGHT_ARROW) && player.position.x < 4900){
     player.addImage(player_right)
     player.position.x +=10
   }
@@ -62,10 +63,9 @@ function draw() {
 
   player.velocityY += 2
 
-  //player.collide(ground1)
-  //player.collide(blocos)
-
-  camera.position.x = player.x+500
+  if (camera.position.x < 4400) {
+    camera.position.x = player.x+500
+  }
 
   drawSprites()
 }
