@@ -1,6 +1,6 @@
 var player;
 var player_right, player_left;
-var fundo, ground;
+var fundo, fundo2, ground;
 var blocos;
 var cenario;
 
@@ -9,6 +9,7 @@ function preload() {
   player_right = loadImage("./assets/mario-right.png")
   player_left = loadImage("./assets/mario-left.png")
   fundo = loadImage("./assets/fundo.jpeg")
+  fundo2 = loadImage("./assets/fundo2.jpeg")
 }
 
 
@@ -22,7 +23,7 @@ function setup() {
   player.debug = true
   player.setCollider("rectangle",0,0,400,500)
 
-  ground = createSprite(windowWidth/2, 680, windowWidth*6, 100)
+  ground = createSprite(windowWidth/2, 680, windowWidth*4, 100)
   //ground.visible = false
 
   blocos = new Group()
@@ -45,11 +46,11 @@ function criarBlocos(x,y,l,a, cor) {
 function draw() {
   background("red");
 
-  for (var i = 0; i<=3840; i=i+1280) {
-    image(fundo,i,0,1280,720)
-  }
+  image(fundo,0,0,1280,720)
+  image(fundo2,1280,0,1280,720)
+  
 
-  if(keyDown(RIGHT_ARROW) && player.position.x < 4900){
+  if(keyDown(RIGHT_ARROW) && player.position.x < 2530){
     player.addImage(player_right)
     player.position.x +=10
   }
@@ -63,11 +64,9 @@ function draw() {
 
   player.velocityY += 2
 
-  if (camera.position.x < 4400) {
+  if (camera.position.x < 1900) {
     camera.position.x = player.x+500
   }
 
   drawSprites()
 }
-
-
